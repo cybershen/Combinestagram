@@ -73,7 +73,6 @@
 				DE164CE0297AF3830078891A /* Views */,
 				DE164CDA297AF34D0078891A /* Controllers */,
 				DE164CCF297AEF480078891A /* Info.plist */,
-				DE164CE6297AF65D0078891A /* PhotoWriter.swift */,
 			);
 			path = RxSwiftTestProj;
 			sourceTree = "<group>";
@@ -111,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				DE164CE4297AF5120078891A /* UIImage + Collage.swift */,
+				DE164CE6297AF65D0078891A /* PhotoWriter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
