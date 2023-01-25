@@ -19,6 +19,8 @@
 		DE164CE2297AF3BA0078891A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE164CE1297AF3BA0078891A /* PhotoCollectionViewCell.swift */; };
 		DE164CE5297AF5120078891A /* UIImage + Collage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE164CE4297AF5120078891A /* UIImage + Collage.swift */; };
 		DE164CE7297AF65D0078891A /* PhotoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE164CE6297AF65D0078891A /* PhotoWriter.swift */; };
+		DEBE1B922981436700321EC1 /* PHPhotoLibrary + RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE1B912981436700321EC1 /* PHPhotoLibrary + RX.swift */; };
+		DEE52CD2297DC8CC00765408 /* UIViewController + RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE52CD1297DC8CC00765408 /* UIViewController + RX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		DE164CE1297AF3BA0078891A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE164CE4297AF5120078891A /* UIImage + Collage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Collage.swift"; sourceTree = "<group>"; };
 		DE164CE6297AF65D0078891A /* PhotoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWriter.swift; sourceTree = "<group>"; };
+		DEBE1B912981436700321EC1 /* PHPhotoLibrary + RX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary + RX.swift"; sourceTree = "<group>"; };
+		DEE52CD1297DC8CC00765408 /* UIViewController + RX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + RX.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				DE164CE4297AF5120078891A /* UIImage + Collage.swift */,
+				DEE52CD1297DC8CC00765408 /* UIViewController + RX.swift */,
+				DEBE1B912981436700321EC1 /* PHPhotoLibrary + RX.swift */,
 				DE164CE6297AF65D0078891A /* PhotoWriter.swift */,
 			);
 			path = Extensions;
@@ -193,9 +199,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE52CD2297DC8CC00765408 /* UIViewController + RX.swift in Sources */,
 				DE164CE7297AF65D0078891A /* PhotoWriter.swift in Sources */,
 				DE164CDC297AF3610078891A /* MainViewController.swift in Sources */,
 				DE164CE2297AF3BA0078891A /* PhotoCollectionViewCell.swift in Sources */,
+				DEBE1B922981436700321EC1 /* PHPhotoLibrary + RX.swift in Sources */,
 				DE164CDE297AF36C0078891A /* PhotosViewController.swift in Sources */,
 				DE164CE5297AF5120078891A /* UIImage + Collage.swift in Sources */,
 				DE164CC2297AEF460078891A /* AppDelegate.swift in Sources */,

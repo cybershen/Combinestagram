@@ -18,11 +18,13 @@ class MainViewController: UIViewController {
     
     private let bag = DisposeBag()
     private let images = BehaviorRelay<[UIImage]>(value: [])
+    private var imageCache = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         images
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak imagePreview] photos in
                 guard let preview = imagePreview else { return }
                 preview.image = photos.collage(size: preview.frame.size)
@@ -38,6 +40,7 @@ class MainViewController: UIViewController {
     
     @IBAction func actionClear() {
         images.accept([])
+        imageCache = []
     }
     
     @IBAction func actionSave() {
@@ -65,7 +68,24 @@ class MainViewController: UIViewController {
         let photosViewController =
         storyboard!.instantiateViewController(withIdentifier: "PhotosViewController") as! PhotosViewController
         
-        photosViewController.selectedPhotos
+        let newPhotos = photosViewController.selectedPhotos.share()
+        
+        newPhotos
+            .takeWhile { [weak self] image in
+                let count = self?.images.value.count ?? 0
+                return count < 6
+            }
+            .filter { newImage in
+                return newImage.size.width > newImage.size.height
+            }
+            .filter { [weak self] newImage in
+                let len = newImage.pngData()?.count ?? 0
+                guard self?.imageCache.contains(len) == false else {
+                    return false
+                }
+                self?.imageCache.append(len)
+                return true
+            }
             .subscribe(onNext: { [weak self] newImage in
                 guard let images = self?.images else { return }
                 images.accept(images.value + [newImage])
@@ -77,6 +97,18 @@ class MainViewController: UIViewController {
             .disposed(by: bag)
         
         navigationController!.pushViewController(photosViewController, animated: true)
+        
+        newPhotos
+            .ignoreElements()
+            .subscribe(onCompleted: { [weak self] in
+                self?.updateNavigationIcon()
+            })
+    }
+    
+    func showMessage(_ title: String, description: String? = nil) {
+        alert(title: title, text: description)
+            .subscribe()
+            .disposed(by: bag)
     }
     
     // MARK: - Private Methods
@@ -90,9 +122,11 @@ class MainViewController: UIViewController {
         "Collage"
     }
     
-    func showMessage(_ title: String, description: String? = nil) {
-        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { [weak self] _ in self?.dismiss(animated: true, completion: nil)}))
-        present(alert, animated: true, completion: nil)
+    private func updateNavigationIcon() {
+        let icon = imagePreview.image?
+            .scaled(CGSize(width: 22, height: 22))
+            .withRenderingMode(.alwaysOriginal)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: icon, style: .done, target: nil, action: nil)
     }
 }
